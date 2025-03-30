@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.amphibian.network.AmphibianApi
+import com.example.amphibian.network.NetworkAmphibianRepository
 import com.example.amphibian.uistate.AmphibianUiState
 import kotlinx.coroutines.launch
 
@@ -19,8 +19,8 @@ class AmphibianViewModel : ViewModel() {
 
     private fun getAmphibianData() {
         viewModelScope.launch {
-            val result = AmphibianApi.retrofitService.getData()
-            amphibianUiState = AmphibianUiState("${ result.size } amphibians are retrieved")
+            val result = NetworkAmphibianRepository()
+            amphibianUiState = AmphibianUiState("${ result.getAmphibianList().size } amphibians are retrieved")
         }
     }
 }
