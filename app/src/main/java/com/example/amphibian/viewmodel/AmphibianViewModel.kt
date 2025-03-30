@@ -1,6 +1,5 @@
 package com.example.amphibian.viewmodel
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -21,7 +20,7 @@ class AmphibianViewModel : ViewModel() {
     private fun getAmphibianData() {
         viewModelScope.launch {
             val result = AmphibianApi.retrofitService.getData()
-            amphibianUiState = AmphibianUiState(result)
+            amphibianUiState = AmphibianUiState("${ result.size } amphibians are retrieved")
         }
     }
 }
