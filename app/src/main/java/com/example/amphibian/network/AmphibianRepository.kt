@@ -1,7 +1,5 @@
 package com.example.amphibian.network
 
-import retrofit2.Retrofit
-
 interface AmphibianRepository {
     suspend fun getAmphibianList(): List<AmphibianData>
 }
@@ -13,4 +11,3 @@ class NetworkAmphibianRepository(
         return amphibianRetrofitService.getData()
     }
 }
-

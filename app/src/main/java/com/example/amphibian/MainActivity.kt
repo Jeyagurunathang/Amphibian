@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+//            val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
             AmphibianTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
@@ -36,15 +37,32 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val amphibianViewModel: AmphibianViewModel = viewModel()
+    val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
+    val amphibianUiState = amphibianViewModel.amphibianUiState
 
     Column (
         modifier = modifier.fillMaxSize()
     ) {
-        Text(
-            text = amphibianViewModel.amphibianUiState.amphibianData,
-            modifier = modifier
-        )
+        when (amphibianUiState) {
+            is AmphibianUiState.Success -> {
+                Text(
+                    text = "${amphibianUiState.amphibianData[0].name} of type ${amphibianUiState.amphibianData[0].type}",
+                    modifier = modifier
+                )
+            }
+            is AmphibianUiState.Error -> {
+                Text(
+                    text = "Error",
+                    modifier = modifier
+                )
+            }
+            is AmphibianUiState.Loading -> {
+                Text(
+                    text = "Loading",
+                    modifier = modifier
+                )
+            }
+        }
     }
 }
 
