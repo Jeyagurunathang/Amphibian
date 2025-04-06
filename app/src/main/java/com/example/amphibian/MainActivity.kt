@@ -25,51 +25,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
             AmphibianTheme(dynamicColor = false) {
                 Surface {
                     AmphibianApp(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.app_side_padding)))
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
-    val amphibianUiState = amphibianViewModel.amphibianUiState
-
-    Column (
-        modifier = modifier.fillMaxSize()
-    ) {
-        when (amphibianUiState) {
-            is AmphibianUiState.Success -> {
-                Text(
-                    text = "${amphibianUiState.amphibianData[0].name} of type ${amphibianUiState.amphibianData[0].type}",
-                    modifier = modifier
-                )
-            }
-            is AmphibianUiState.Error -> {
-                Text(
-                    text = "Error",
-                    modifier = modifier
-                )
-            }
-            is AmphibianUiState.Loading -> {
-                Text(
-                    text = "Loading",
-                    modifier = modifier
-                )
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AmphibianTheme {
-        Greeting("Android")
     }
 }

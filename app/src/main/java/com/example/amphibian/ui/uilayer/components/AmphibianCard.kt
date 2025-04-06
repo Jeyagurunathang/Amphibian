@@ -1,10 +1,7 @@
 package com.example.amphibian.ui.uilayer.components
 
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -13,6 +10,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
@@ -22,7 +21,6 @@ import coil.request.ImageRequest
 import com.example.amphibian.R
 import com.example.amphibian.network.AmphibianData
 import com.example.amphibian.ui.theme.AmphibianTheme
-import com.example.amphibian.ui.uilayer.AmphibianApp
 
 @Composable
 fun AmphibianCard(
@@ -30,20 +28,23 @@ fun AmphibianCard(
     amphibianData: AmphibianData,
 ) {
     Card (
-        modifier = modifier.padding(vertical = dimensionResource(R.dimen.padding_large)),
+        modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_large)),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondary
         ),
         shape = MaterialTheme.shapes.medium
     ) {
-        Box {
+        Box (
+            modifier = modifier.fillMaxWidth().background(Color.Red)
+        ) {
             AsyncImage(
                 model = ImageRequest.Builder(context = LocalContext.current)
                     .data(amphibianData.imgSrc)
                     .crossfade(true)
                     .build(),
                 contentDescription = amphibianData.name,
-                modifier = Modifier.fillMaxWidth()
+                modifier = modifier.fillMaxWidth(),
+                contentScale = ContentScale.Crop
             )
             AmphibianTypeSpecifier(amphibianType = amphibianData.type)
         }

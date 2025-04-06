@@ -10,19 +10,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.amphibian.R
+import com.example.amphibian.uistate.AmphibianUiState
+import com.example.amphibian.viewmodel.AmphibianViewModel
 
 @Composable
 fun AmphibianApp(modifier: Modifier = Modifier) {
+    val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
+    val amphibianUiState: AmphibianUiState = amphibianViewModel.amphibianUiState
+
     Scaffold(
-        topBar = { AmphibianTopAppBar() }
+//        topBar = { AmphibianTopAppBar() }
     ) { innerPadding ->
-        HomeScreen(
-            modifier = modifier.padding(innerPadding))
+        when (amphibianUiState) {
+            is AmphibianUiState.Success -> HomeScreen(
+                modifier = modifier.padding(innerPadding),
+                amphibians = amphibianUiState.amphibianData
+            )
+
+            is AmphibianUiState.Loading -> { Text(text = "Loading") }
+
+            is AmphibianUiState.Error -> { Text(text = "Error") }
+        }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+/* @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AmphibianTopAppBar(modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
@@ -35,3 +49,4 @@ fun AmphibianTopAppBar(modifier: Modifier = Modifier) {
         modifier = modifier.padding(top = dimensionResource(R.dimen.app_title_padding))
     )
 }
+ */

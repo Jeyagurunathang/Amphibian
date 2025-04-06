@@ -3,7 +3,7 @@
     <dimen name="app_title_padding">76.dp</dimen>
     <dimen name="app_side_padding">40.dp</dimen>
 
-    <dimen name="padding_large">65.dp</dimen>
+    <dimen name="padding_large">60.dp</dimen>
     <dimen name="padding_medium">15.dp</dimen>
     <dimen name="padding_small">5.dp</dimen>
 

@@ -26,7 +26,7 @@ fun AmphibianTypeSpecifier(
             text = amphibianType,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.tertiary,
-            modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_small))
+            modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_small), horizontal = dimensionResource(R.dimen.padding_small))
         )
     }
 }

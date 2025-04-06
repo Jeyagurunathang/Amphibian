@@ -24,7 +24,7 @@ class AmphibianViewModel(private val amphibianRepository: AmphibianRepository) :
         getAmphibianData()
     }
 
-    fun getAmphibianData() {
+    private fun getAmphibianData() {
         viewModelScope.launch {
             amphibianUiState = try {
                 AmphibianUiState.Success(amphibianData = amphibianRepository.getAmphibianList())
