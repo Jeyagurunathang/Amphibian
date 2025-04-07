@@ -17,6 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.amphibian.ui.theme.AmphibianTheme
 import com.example.amphibian.ui.uilayer.AmphibianApp
+import com.example.amphibian.ui.uilayer.AmphibianDetailScreen
+import com.example.amphibian.ui.uilayer.DetailScreenBody
 import com.example.amphibian.uistate.AmphibianUiState
 import com.example.amphibian.viewmodel.AmphibianViewModel
 
@@ -28,6 +30,7 @@ class MainActivity : ComponentActivity() {
             AmphibianTheme(dynamicColor = false) {
                 Surface {
                     AmphibianApp(modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.app_side_padding)))
+//                    AmphibianDetailScreen()
                 }
             }
         }

@@ -35,7 +35,8 @@ val Typography = Typography(
     bodyMedium = TextStyle(
         fontFamily = nunito,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 22.sp
+        fontSize = 22.sp,
+        lineHeight = 52.sp
     ),
     bodySmall = TextStyle(
         fontFamily = nunito,
