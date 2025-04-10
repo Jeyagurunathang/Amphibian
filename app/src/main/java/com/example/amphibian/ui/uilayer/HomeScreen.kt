@@ -24,7 +24,8 @@ import com.example.amphibian.ui.uilayer.components.AmphibianCard
 fun HomeScreen(
     modifier: Modifier = Modifier,
     padding: PaddingValues = PaddingValues(0.dp),
-    amphibians: List<AmphibianData>
+    amphibians: List<AmphibianData>,
+    onAmphibianCardClicked: (AmphibianData) -> Unit
 ) {
     LazyColumn (
         modifier = modifier
@@ -43,7 +44,8 @@ fun HomeScreen(
             key = { amphibian -> amphibian.name }
         ) { amphibian ->
             AmphibianCard(
-                amphibianData = amphibian
+                amphibianData = amphibian,
+                onClicked = onAmphibianCardClicked
             )
         }
     }

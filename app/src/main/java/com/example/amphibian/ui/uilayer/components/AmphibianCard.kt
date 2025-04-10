@@ -1,5 +1,6 @@
 package com.example.amphibian.ui.uilayer.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,9 +25,10 @@ import com.example.amphibian.ui.theme.AmphibianTheme
 fun AmphibianCard(
     modifier: Modifier = Modifier,
     amphibianData: AmphibianData,
+    onClicked: (AmphibianData) -> Unit
 ) {
     Card (
-        modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_large)),
+        modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_large)).clickable { onClicked(amphibianData) },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.secondary
         ),
@@ -68,7 +70,8 @@ fun AmphibianCardPreview(modifier: Modifier = Modifier) {
                 type = "Toad",
                 description = "This is toad",
                 imgSrc = "https://developer.android.com/codelabs/basic-android-kotlin-compose-amphibians-app/img/great-basin-spadefoot.png"
-            )
+            ),
+            onClicked = {}
         )
     }
 }

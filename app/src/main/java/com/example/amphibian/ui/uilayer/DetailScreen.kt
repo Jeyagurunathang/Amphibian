@@ -17,7 +17,7 @@ import com.example.amphibian.network.AmphibianData
 @Composable
 fun AmphibianDetailScreen(
     modifier: Modifier = Modifier,
-    amphibianData: AmphibianData = AmphibianData(
+    amphibianData: AmphibianData? = AmphibianData(
         name = "Great Basin Spadefoot",
         type = "Toad",
         description = "This toad spends most of its life underground due to the arid desert conditions in which it lives. Spadefoot toads earn the name because of their hind legs which are wedged to aid in digging. They are typically grey, green, or brown with dark spots.",
@@ -29,14 +29,14 @@ fun AmphibianDetailScreen(
             modifier = Modifier.fillMaxSize().padding(innerPadding).padding(top = dimensionResource(R.dimen.app_title_padding)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            DetailScreenHeader(amphibianName = amphibianData.name)
+            DetailScreenHeader(amphibianName = amphibianData?.name.orEmpty())
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_large)))
 
             DetailScreenBody(
-                amphibianName = amphibianData.name,
-                amphibianDescription = amphibianData.description,
-                amphibianImage = amphibianData.imgSrc
+                amphibianName = amphibianData?.name.orEmpty(),
+                amphibianDescription = amphibianData?.description.orEmpty(),
+                amphibianImage = amphibianData?.imgSrc.orEmpty()
             )
         }
     }
