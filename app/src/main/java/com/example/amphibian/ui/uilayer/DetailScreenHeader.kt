@@ -23,14 +23,15 @@ import com.example.amphibian.ui.theme.AmphibianTheme
 @Composable
 fun DetailScreenHeader(
     modifier: Modifier = Modifier,
-    amphibianName: String = "Great Basin Spadefoot"
+    amphibianName: String = "Great Basin Spadefoot",
+    onBackArrowPressed: () -> Unit
 ) {
     Row (
         modifier = Modifier.fillMaxWidth().padding(horizontal = dimensionResource(R.dimen.app_side_padding)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(
-            onClick = {}
+            onClick = onBackArrowPressed
         ) {
             Icon(
                 painter = painterResource(R.drawable.back_arrow),
@@ -49,10 +50,10 @@ fun DetailScreenHeader(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DetailScreenHeaderPreview() {
-    AmphibianTheme(dynamicColor = false) {
-        DetailScreenHeader()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun DetailScreenHeaderPreview() {
+//    AmphibianTheme(dynamicColor = false) {
+//        DetailScreenHeader()
+//    }
+//}

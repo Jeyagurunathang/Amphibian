@@ -28,12 +28,13 @@ import com.example.amphibian.uistate.AmphibianUiState
 import com.example.amphibian.viewmodel.AmphibianViewModel
 
 class MainActivity : ComponentActivity() {
-    var amphibian: AmphibianData? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
+            val amphibianUiState: AmphibianUiState = amphibianViewModel.amphibianUiState
+
             val navController = rememberNavController()
 
             AmphibianTheme(dynamicColor = false) {
@@ -45,15 +46,20 @@ class MainActivity : ComponentActivity() {
                         composable(route = AmphibianScreens.HOME.name) {
                             AmphibianApp(
                                 modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.app_side_padding)),
+                                amphibianViewModel = amphibianViewModel,
+                                amphibianUiState =  amphibianUiState,
                                 onAmphibianClicked = { it ->
-                                    amphibian = it
+                                    amphibianViewModel.updateCurrentAmphibianData(it)
                                     navController.navigate(AmphibianScreens.DETAILS.name) 
                                 }
                             )
                         }
 
                         composable(route = AmphibianScreens.DETAILS.name) {
-                            AmphibianDetailScreen(amphibianData = amphibian)
+                            AmphibianDetailScreen(
+                                amphibianData = amphibianViewModel.selectedAmphibian,
+                                onBackArrowPressed = { navController.navigateUp() }
+                            )
                         }
                     }
 

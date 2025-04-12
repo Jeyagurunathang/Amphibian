@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.amphibian.AmphibianApplication
+import com.example.amphibian.network.AmphibianData
 import com.example.amphibian.network.AmphibianRepository
 import com.example.amphibian.uistate.AmphibianUiState
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ import java.io.IOException
 class AmphibianViewModel(private val amphibianRepository: AmphibianRepository) : ViewModel() {
     var amphibianUiState: AmphibianUiState by mutableStateOf(AmphibianUiState.Loading)
         private set
+    var selectedAmphibian: AmphibianData by mutableStateOf(AmphibianData())
 
     init {
         getAmphibianData()
@@ -36,6 +38,10 @@ class AmphibianViewModel(private val amphibianRepository: AmphibianRepository) :
                 AmphibianUiState.Error
             }
         }
+    }
+
+    fun updateCurrentAmphibianData(amphibianData: AmphibianData) {
+        selectedAmphibian = amphibianData
     }
 
     companion object {

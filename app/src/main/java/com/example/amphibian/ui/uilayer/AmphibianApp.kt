@@ -19,11 +19,10 @@ import com.example.amphibian.viewmodel.AmphibianViewModel
 @Composable
 fun AmphibianApp(
     modifier: Modifier = Modifier,
-    onAmphibianClicked: (AmphibianData) -> Unit = {}
+    onAmphibianClicked: (AmphibianData) -> Unit = {},
+    amphibianViewModel: AmphibianViewModel,
+    amphibianUiState: AmphibianUiState
 ) {
-    val amphibianViewModel: AmphibianViewModel = viewModel(factory = AmphibianViewModel.Factory)
-    val amphibianUiState: AmphibianUiState = amphibianViewModel.amphibianUiState
-
     Scaffold(
 //        topBar = { AmphibianTopAppBar() }
     ) { innerPadding ->
