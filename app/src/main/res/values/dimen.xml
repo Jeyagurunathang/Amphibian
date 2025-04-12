@@ -13,4 +13,6 @@
     <dimen name="detail_vertical">50.dp</dimen>
 
     <dimen name="back_arrow">20.dp</dimen>
+
+    <dimen name="loader_width">16.dp</dimen>
 </resources>

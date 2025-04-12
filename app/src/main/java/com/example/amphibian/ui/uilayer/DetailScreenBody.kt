@@ -24,9 +24,11 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.amphibian.R
 import com.example.amphibian.ui.theme.AmphibianTheme
+import com.example.amphibian.ui.uilayer.components.LoadingScreen
 
 @Composable
 fun DetailScreenBody(

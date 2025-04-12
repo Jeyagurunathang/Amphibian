@@ -1,5 +1,6 @@
 package com.example.amphibian.ui.uilayer
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -13,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.amphibian.R
 import com.example.amphibian.network.AmphibianData
+import com.example.amphibian.ui.uilayer.components.LoadingScreen
 import com.example.amphibian.uistate.AmphibianUiState
 import com.example.amphibian.viewmodel.AmphibianViewModel
 
@@ -33,7 +35,7 @@ fun AmphibianApp(
                 onAmphibianCardClicked = onAmphibianClicked
             )
 
-            is AmphibianUiState.Loading -> { Text(text = "Loading") }
+            is AmphibianUiState.Loading -> { LoadingScreen(modifier = Modifier.fillMaxSize()) }
 
             is AmphibianUiState.Error -> { Text(text = "Error") }
         }

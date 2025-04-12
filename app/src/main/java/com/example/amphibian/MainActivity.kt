@@ -24,6 +24,7 @@ import com.example.amphibian.ui.uilayer.AmphibianApp
 import com.example.amphibian.ui.uilayer.AmphibianDetailScreen
 import com.example.amphibian.ui.uilayer.DetailScreenBody
 import com.example.amphibian.ui.uilayer.components.AmphibianScreens
+import com.example.amphibian.ui.uilayer.components.LoadingScreen
 import com.example.amphibian.uistate.AmphibianUiState
 import com.example.amphibian.viewmodel.AmphibianViewModel
 
