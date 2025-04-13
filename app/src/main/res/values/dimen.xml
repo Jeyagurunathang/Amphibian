@@ -15,4 +15,7 @@
     <dimen name="back_arrow">20.dp</dimen>
 
     <dimen name="loader_width">16.dp</dimen>
+
+    <dimen name="error_icon">50.dp</dimen>
+    <dimen name="error_screen_dividing_space">50.dp</dimen>
 </resources>
