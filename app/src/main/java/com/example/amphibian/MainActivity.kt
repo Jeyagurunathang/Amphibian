@@ -4,6 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -44,7 +51,15 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         startDestination = AmphibianScreens.HOME.name
                     ) {
-                        composable(route = AmphibianScreens.HOME.name) {
+                        composable(
+                            route = AmphibianScreens.HOME.name,
+                            exitTransition = {
+                                slideOutHorizontally(animationSpec = tween(500))
+                            },
+                            popEnterTransition = {
+                                slideInHorizontally(animationSpec = tween(500))
+                            }
+                        ) {
                             AmphibianApp(
                                 modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.app_side_padding)),
                                 amphibianViewModel = amphibianViewModel,
@@ -56,7 +71,21 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(route = AmphibianScreens.DETAILS.name) {
+                        composable(
+                            route = AmphibianScreens.DETAILS.name,
+                            enterTransition = {
+                                slideIntoContainer(
+                                    towards = AnimatedContentTransitionScope.SlideDirection.Left,
+                                    tween(500)
+                                )
+                            },
+                            popExitTransition = {
+                                slideOutOfContainer(
+                                    towards = AnimatedContentTransitionScope.SlideDirection.Right,
+                                    animationSpec = tween(500)
+                                )
+                            }
+                        ) {
                             AmphibianDetailScreen(
                                 amphibianData = amphibianViewModel.selectedAmphibian,
                                 onBackArrowPressed = { navController.navigateUp() }

@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.amphibian.R
 import com.example.amphibian.network.AmphibianData
+import com.example.amphibian.ui.uilayer.components.ErrorScreen
 import com.example.amphibian.ui.uilayer.components.LoadingScreen
 import com.example.amphibian.uistate.AmphibianUiState
 import com.example.amphibian.viewmodel.AmphibianViewModel
@@ -37,7 +38,7 @@ fun AmphibianApp(
 
             is AmphibianUiState.Loading -> { LoadingScreen(modifier = Modifier.fillMaxSize()) }
 
-            is AmphibianUiState.Error -> { Text(text = "Error") }
+            is AmphibianUiState.Error -> { ErrorScreen() }
         }
     }
 }
